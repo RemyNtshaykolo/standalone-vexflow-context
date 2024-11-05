@@ -40,10 +40,11 @@ export class ReactNativeSVGContext extends SVGContext {
     };
   }
 
-  constructor(fontPack, { width = 300, height = 300 }) {
+  constructor(fontPack, { width = 300, height = 300, backgroundColor = 'white'  }) {
     super(ReactNativeSVGContext.create('div'), 'div');
     this.svg.props.width = width;
     this.svg.props.height = height;
+    this.svg.props.style.backgroundColor = backgroundColor;
     this.fontPack = fontPack;
     this.key = 1; // react element key counter
   }
