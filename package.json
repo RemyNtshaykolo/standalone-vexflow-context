@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/panarch/standalone-vexflow-context#readme",
   "peerDependencies": {
-    "vexflow": ">= 1.2.83 < 2"
+    "vexflow": "4.2.5"
   },
   "dependencies": {
     "opentype.js": "^0.6.9",
