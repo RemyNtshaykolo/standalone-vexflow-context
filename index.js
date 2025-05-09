@@ -1,7 +1,4 @@
-import { ReactNativeSVGContext } from './ReactNativeSVGContext';
-import NotoFontPack from './NotoFontPack';
+import { ReactNativeSVGContext } from "./ReactNativeSVGContext";
+import NotoFontPack from "./NotoFontPack";
 
-export {
-  ReactNativeSVGContext,
-  NotoFontPack,
-};
+export { ReactNativeSVGContext, NotoFontPack };

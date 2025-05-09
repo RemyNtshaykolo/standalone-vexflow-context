@@ -1,8 +1,9 @@
-import React from 'react';
-import { Vex } from 'vexflow/src/vex';
-import { SVGContext } from 'vexflow/src/svgcontext';
-import { StaveNote } from 'vexflow/src/stavenote';
-import Svg, { Path, Rect, G } from 'react-native-svg';
+import Svg, { G, Path, Rect } from "react-native-svg";
+
+import React from "react";
+import { SVGContext } from "vexflow/src/svgcontext";
+import { StaveNote } from "vexflow/src/stavenote";
+import { Vex } from "vexflow/src/vex";
 
 const SvgClass = {
   svg: Svg,
@@ -12,26 +13,26 @@ const SvgClass = {
 };
 
 export class ReactNativeSVGContext extends SVGContext {
-  static create(svgElementType, key = 'svg') {
+  static create(svgElementType, key = "svg") {
     const props = {
       key: key++,
-      style: {}
+      style: {},
     };
 
-    if (svgElementType === 'svg') {
-      props['xmlns'] = 'http://www.w3.org/2000/svg';
+    if (svgElementType === "svg") {
+      props["xmlns"] = "http://www.w3.org/2000/svg";
     }
 
     return {
       get style() {
         return props.style;
       },
-      setAttribute: function(propertyName, value) {
-        if (propertyName === 'class') propertyName = 'className';
+      setAttribute: function (propertyName, value) {
+        if (propertyName === "class") propertyName = "className";
 
         this.props[propertyName] = value;
       },
-      appendChild: function(elem) {
+      appendChild: function (elem) {
         this.children.push(elem);
       },
       children: [],
@@ -40,8 +41,11 @@ export class ReactNativeSVGContext extends SVGContext {
     };
   }
 
-  constructor(fontPack, { width = 300, height = 300, backgroundColor = 'white'  }) {
-    super(ReactNativeSVGContext.create('div'), 'div');
+  constructor(
+    fontPack,
+    { width = 300, height = 300, backgroundColor = "white" },
+  ) {
+    super(ReactNativeSVGContext.create("div"), "div");
     this.svg.props.width = width;
     this.svg.props.height = height;
     this.svg.props.style.backgroundColor = backgroundColor;
@@ -54,11 +58,10 @@ export class ReactNativeSVGContext extends SVGContext {
   }
 
   applyAttributes(element, attributes) {
-    for(const propertyName in attributes) {
-      const _propertyName = propertyName.replace(
-        /-([a-z])/g,
-        function (g) { return g[1].toUpperCase(); }
-      );
+    for (const propertyName in attributes) {
+      const _propertyName = propertyName.replace(/-([a-z])/g, function (g) {
+        return g[1].toUpperCase();
+      });
 
       element.props[_propertyName] = attributes[propertyName];
     }
@@ -68,13 +71,14 @@ export class ReactNativeSVGContext extends SVGContext {
 
   fillText(text, x, y) {
     const attributes = {};
-    const path = this.create('path');
+    const path = this.create("path");
     const fontSize = this.getFontSize();
     const font = this.fontPack.getFont(attributes);
     const pathData = font.getPath(text, x, y, fontSize).toPathData();
 
     attributes.d = pathData;
-    attributes.stroke = "black";
+    attributes.stroke = "white";
+    attributes.fill = "white";
     attributes.x = x;
     attributes.y = y;
 
@@ -87,11 +91,11 @@ export class ReactNativeSVGContext extends SVGContext {
   }
 
   getFontSize() {
-    let fontSize = Number(this.attributes['font-size'].replace(/[^.\d]+/g, ''));
+    let fontSize = Number(this.attributes["font-size"].replace(/[^.\d]+/g, ""));
 
     // Convert pt to px
-    if (/pt$/.test(this.attributes['font-size'])) {
-      fontSize = (fontSize * 4 / 3) | 0;
+    if (/pt$/.test(this.attributes["font-size"])) {
+      fontSize = ((fontSize * 4) / 3) | 0;
     }
 
     return fontSize;
@@ -115,15 +119,15 @@ export class ReactNativeSVGContext extends SVGContext {
       children.push(this.createReactElement(element.children[i]));
     }
 
-    if (element.svgElementType === 'path') {
-      delete element.props['x'];
-      delete element.props['y'];
+    if (element.svgElementType === "path") {
+      delete element.props["x"];
+      delete element.props["y"];
     }
 
     return React.createElement(
       SvgClass[element.svgElementType],
       element.props,
-      children
+      children,
     );
   }
 

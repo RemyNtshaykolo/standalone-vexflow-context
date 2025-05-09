@@ -26,7 +26,10 @@
     "vexflow": "4.2.5"
   },
   "dependencies": {
-    "opentype.js": "^0.6.9",
-    "base64-arraybuffer": "^0.1.5"
+    "base64-arraybuffer": "^0.1.5",
+    "opentype.js": "^0.6.9"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
   }
 }
