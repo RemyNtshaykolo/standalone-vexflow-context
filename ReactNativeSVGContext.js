@@ -69,16 +69,16 @@ export class ReactNativeSVGContext extends SVGContext {
     return element;
   }
 
-  fillText(text, x, y) {
+  fillText(text, x, y, size, color) {
     const attributes = {};
     const path = this.create("path");
     const fontSize = this.getFontSize();
     const font = this.fontPack.getFont(attributes);
-    const pathData = font.getPath(text, x, y, fontSize).toPathData();
+    const pathData = font.getPath(text, x, y, size).toPathData();
 
     attributes.d = pathData;
-    attributes.stroke = "white";
-    attributes.fill = "white";
+    attributes.stroke = color;
+    attributes.fill = color;
     attributes.x = x;
     attributes.y = y;
 
@@ -103,6 +103,7 @@ export class ReactNativeSVGContext extends SVGContext {
 
   measureText(text) {
     const fontSize = this.getFontSize();
+    console.log(fontSize);
     const font = this.fontPack.getFont(this.attributes);
     const path = font.getPath(text, 0, 0, fontSize);
     const bbox = path.getBoundingBox();
