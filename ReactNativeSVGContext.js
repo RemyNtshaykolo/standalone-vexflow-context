@@ -103,7 +103,6 @@ export class ReactNativeSVGContext extends SVGContext {
 
   measureText(text) {
     const fontSize = this.getFontSize();
-    console.log(fontSize);
     const font = this.fontPack.getFont(this.attributes);
     const path = font.getPath(text, 0, 0, fontSize);
     const bbox = path.getBoundingBox();
