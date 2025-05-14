@@ -81,7 +81,6 @@ export class ReactNativeSVGContext extends SVGContext {
     const font = this.fontPack.getFont(attributes);
 
     const pathData = font.getPath(text, x, y, fontSize).toPathData();
-    console.log("pathData", pathData);
 
     attributes.d = pathData;
     attributes.stroke = color;
