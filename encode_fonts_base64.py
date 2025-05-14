@@ -18,9 +18,7 @@ def main():
     font_dir = "fonts"
 
     fonts = [
-        "Petaluma.otf",
-        "PetalumaScript.otf",
-        "PetalumaText.otf",
+        "JazzCord-Regular.ttf",
     ]
 
     for filename in fonts:
