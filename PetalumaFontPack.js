@@ -40,7 +40,6 @@ const PetalumaFontPack = {
     } else if (/text/i.test(style["font-family"])) {
       fontName = "PetalumaText";
     }
-    console.log("fontName", this[fontName][fontStyle]);
 
     let fontStyle = "";
     if (style["font-weight"] === "bold") fontStyle = "bold";
